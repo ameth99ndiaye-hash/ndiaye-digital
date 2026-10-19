@@ -1,0 +1,31 @@
+NDIAYE DIGITAL — BUSINESS STARTER
+Version 1.0
+
+CONTENU
+- index.html : application mobile
+- manifest.json : paramètres d’installation PWA
+- sw.js : cache hors ligne après première visite sur un hébergement HTTPS
+
+FONCTIONS
+- Tableau de bord : chiffre d’affaires, dépenses, bénéfice estimé, quantité en stock
+- Enregistrement des ventes et dépenses
+- Inventaire produit avec ajustement du stock
+- Historique filtrable par type et mois
+- Export CSV
+- Sauvegarde et restauration JSON
+- Interface française, montants en FCFA
+- Enregistrement local sur l’appareil, sans compte
+
+TESTER SUR IPHONE
+1. Décompressez le ZIP.
+2. Hébergez les fichiers sur un site HTTPS, par exemple GitHub Pages.
+3. Ouvrez l’adresse dans Safari sur iPhone.
+4. Touchez Partager > Sur l’écran d’accueil > Ajouter.
+5. Ouvrez l’icône ajoutée. Faites une sauvegarde régulière depuis Réglages.
+
+IMPORTANT
+- Les données sont conservées sur l’appareil et ne sont pas synchronisées entre appareils.
+- Ne supprimez pas les données du navigateur sans avoir exporté une sauvegarde.
+- Le stock n’est pas automatiquement diminué lors d’une vente.
+- Cette version n’intègre pas de paiement en ligne. Wave et Orange Money peuvent être utilisés séparément pour encaisser les clients.
+- Avant de vendre à l’international, testez la plateforme de paiement, les retraits vers le Sénégal, les conditions et les frais. Ne promettez pas un moyen de paiement avant confirmation.

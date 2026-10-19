@@ -1,0 +1,11 @@
+{
+  "name": "NDIAYE DIGITAL — Business Starter",
+  "short_name": "NDIAYE Business",
+  "description": "Gestion simple des ventes, dépenses et stocks.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0d120f",
+  "theme_color": "#101713",
+  "orientation": "portrait",
+  "icons": []
+}

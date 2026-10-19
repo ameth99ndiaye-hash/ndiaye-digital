@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101713">
+<meta name="description" content="NDIAYE DIGITAL Business Starter — gérez ventes, dépenses, produits et stock depuis votre téléphone.">
+<link rel="manifest" href="manifest.json">
+<title>NDIAYE DIGITAL — Business Starter</title>
+<style>
+:root{--bg:#0d120f;--panel:#151e18;--panel2:#1c2820;--green:#72e39a;--gold:#f3c969;--text:#f5f7f5;--muted:#9daaa0;--red:#ff7c7c;--line:#29362d}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#1b3223 0,transparent 35%),var(--bg);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:90px}
+header{padding:22px 18px 14px;position:sticky;top:0;background:rgba(13,18,15,.94);backdrop-filter:blur(16px);z-index:5;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:11px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--green),#2c9b5a);display:grid;place-items:center;color:#092012;font-weight:900;font-size:18px;box-shadow:0 6px 22px #72e39a25}
+h1{font-size:18px;margin:0;letter-spacing:.4px}header p{margin:4px 0 0;color:var(--muted);font-size:12px}
+main{padding:16px;max-width:760px;margin:auto}.section{display:none}.section.active{display:block}.eyebrow{font-size:11px;letter-spacing:1.7px;color:var(--green);font-weight:800;text-transform:uppercase;margin:4px 0 10px}
+h2{font-size:23px;margin:0 0 15px}h3{font-size:15px;margin:0 0 12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;padding:16px;min-width:0}.metric-label{font-size:12px;color:var(--muted)}.metric{font-size:22px;font-weight:800;margin-top:7px;overflow-wrap:anywhere}.green{color:var(--green)}.gold{color:var(--gold)}.muted{color:var(--muted)}.wide{grid-column:1/-1}
+button,.btn{border:0;border-radius:12px;padding:12px 14px;font-weight:750;cursor:pointer;font-size:14px}.primary{background:var(--green);color:#092012}.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}.danger{background:#3a2020;color:#ffb5b5}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+form{display:grid;gap:11px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{display:grid;gap:6px}label{font-size:12px;color:var(--muted)}input,select{width:100%;background:#0d140f;border:1px solid #344238;border-radius:11px;padding:13px;color:var(--text);font:inherit;min-width:0}input:focus,select:focus{outline:2px solid #72e39a66;border-color:var(--green)}.list{display:grid;gap:9px;margin-top:12px}.item{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--panel);border:1px solid var(--line);padding:12px;border-radius:13px}.item strong{display:block;font-size:14px}.item small{display:block;color:var(--muted);margin-top:4px}.item-right{text-align:right;white-space:nowrap}.item-right b{display:block}.empty{padding:20px;text-align:center;color:var(--muted);border:1px dashed #344238;border-radius:14px;font-size:13px}.pill{font-size:10px;padding:4px 7px;border-radius:99px;background:#26382b;color:var(--green);display:inline-block;margin-top:5px}.pill.low{background:#3a2420;color:#ffb5a8}.nav{position:fixed;bottom:0;left:0;right:0;z-index:10;display:grid;grid-template-columns:repeat(4,1fr);gap:3px;padding:8px 7px calc(8px + env(safe-area-inset-bottom));background:rgba(15,21,17,.96);border-top:1px solid var(--line);backdrop-filter:blur(16px)}.nav button{background:transparent;color:var(--muted);padding:8px 2px;font-size:11px}.nav button span{display:block;font-size:19px;margin-bottom:3px}.nav button.active{color:var(--green);background:#1a2b20;border-radius:12px}.notice{font-size:12px;color:var(--muted);line-height:1.5;margin-top:12px}.subhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:20px 0 10px}.subhead h3{margin:0}.small-btn{font-size:11px;padding:7px 9px}.toast{position:fixed;left:16px;right:16px;bottom:90px;background:#e6ffec;color:#102116;padding:12px 14px;border-radius:12px;font-weight:700;display:none;z-index:20;box-shadow:0 8px 30px #0007}
+@media(min-width:600px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.metric{font-size:24px}.nav{left:50%;transform:translateX(-50%);max-width:760px;border:1px solid var(--line);border-bottom:0;border-radius:18px 18px 0 0}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">ND</div><div><h1>NDIAYE DIGITAL</h1><p>BUSINESS STARTER · Gestion simple</p></div></div></header>
+<main>
+<section class="section active" id="dashboard">
+<div class="eyebrow">Votre activité</div><h2>Tableau de bord</h2>
+<div class="grid">
+<div class="card"><div class="metric-label">Chiffre d’affaires</div><div class="metric green" id="revenue">0 FCFA</div></div>
+<div class="card"><div class="metric-label">Dépenses</div><div class="metric metric" id="expenses">0 FCFA</div></div>
+<div class="card"><div class="metric-label">Bénéfice estimé</div><div class="metric gold" id="profit">0 FCFA</div></div>
+<div class="card"><div class="metric-label">Produits en stock</div><div class="metric" id="stockCount">0</div></div>
+</div>
+<div class="actions"><button class="primary" onclick="showSection('sales')">＋ Ajouter une vente</button><button class="secondary" onclick="showSection('expensesPage')">＋ Dépense</button></div>
+<div class="subhead"><h3>Dernières opérations</h3><button class="secondary small-btn" onclick="showSection('history')">Tout voir</button></div>
+<div id="recentList" class="list"></div>
+<p class="notice">Vos données restent enregistrées sur cet appareil. Exportez régulièrement une sauvegarde depuis « Réglages ».</p>
+</section>
+<section class="section" id="sales">
+<div class="eyebrow">Encaissement</div><h2>Enregistrer une vente</h2>
+<div class="card"><form id="saleForm">
+<div class="field"><label for="saleName">Produit / service vendu</label><input id="saleName" required placeholder="Ex. T-shirt, livraison…"></div>
+<div class="form-grid"><div class="field"><label for="saleQty">Quantité</label><input id="saleQty" type="number" min="1" step="1" value="1" required></div><div class="field"><label for="salePrice">Prix unitaire (FCFA)</label><input id="salePrice" type="number" min="0" step="1" placeholder="5000" required></div></div>
+<div class="field"><label for="saleDate">Date</label><input id="saleDate" type="date" required></div>
+<button class="primary" type="submit">Enregistrer la vente</button></form></div>
+<div class="subhead"><h3>Ventes enregistrées</h3></div><div id="salesList" class="list"></div>
+</section>
+<section class="section" id="expensesPage">
+<div class="eyebrow">Sorties d’argent</div><h2>Ajouter une dépense</h2>
+<div class="card"><form id="expenseForm">
+<div class="field"><label for="expenseName">Motif de la dépense</label><input id="expenseName" required placeholder="Ex. Transport, emballage…"></div>
+<div class="form-grid"><div class="field"><label for="expenseAmount">Montant (FCFA)</label><input id="expenseAmount" type="number" min="1" step="1" required placeholder="2500"></div><div class="field"><label for="expenseDate">Date</label><input id="expenseDate" type="date" required></div></div>
+<button class="primary" type="submit">Enregistrer la dépense</button></form></div>
+<div class="subhead"><h3>Dépenses enregistrées</h3></div><div id="expensesList" class="list"></div>
+</section>
+<section class="section" id="products">
+<div class="eyebrow">Inventaire</div><h2>Produits & stock</h2>
+<div class="card"><form id="productForm">
+<div class="field"><label for="productName">Nom du produit</label><input id="productName" required placeholder="Ex. Casquette noire"></div>
+<div class="form-grid"><div class="field"><label for="productQty">Quantité en stock</label><input id="productQty" type="number" min="0" step="1" required placeholder="10"></div><div class="field"><label for="productPrice">Prix de vente (FCFA)</label><input id="productPrice" type="number" min="0" step="1" required placeholder="5000"></div></div>
+<button class="primary" type="submit">Ajouter le produit</button></form></div>
+<div class="subhead"><h3>Mon inventaire</h3><span class="muted" id="productTotal">0 produit</span></div><div id="productsList" class="list"></div>
+<p class="notice">Le stock est suivi séparément : l’enregistrement d’une vente ne réduit pas automatiquement le stock pour éviter les erreurs sur les ventes saisies sans inventaire.</p>
+</section>
+<section class="section" id="history">
+<div class="eyebrow">Suivi</div><h2>Historique</h2>
+<div class="form-grid"><div class="field"><label for="filterType">Type</label><select id="filterType"><option value="all">Tout</option><option value="sale">Ventes</option><option value="expense">Dépenses</option></select></div><div class="field"><label for="filterMonth">Mois</label><input id="filterMonth" type="month"></div></div>
+<div id="historyList" class="list"></div><div class="actions"><button class="secondary" onclick="exportCSV()">Exporter en CSV</button></div>
+</section>
+<section class="section" id="settings">
+<div class="eyebrow">Données & préférences</div><h2>Réglages</h2>
+<div class="card"><h3>Votre devise</h3><p class="muted">Les montants sont affichés en FCFA (XOF), adapté à une activité au Sénégal.</p></div>
+<div class="card" style="margin-top:12px"><h3>Sauvegarde de vos données</h3><p class="muted">Téléchargez un fichier JSON que vous pourrez conserver dans Fichiers sur votre iPhone.</p><div class="actions"><button class="primary" onclick="backupData()">Télécharger la sauvegarde</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">Restaurer une sauvegarde</button><input id="restoreFile" type="file" accept="application/json" hidden></div></div>
+<div class="card" style="margin-top:12px"><h3>Réinitialiser l’application</h3><p class="muted">Attention : cette action efface les ventes, dépenses et produits enregistrés sur cet appareil.</p><button class="danger" onclick="resetData()">Effacer toutes les données</button></div>
+<p class="notice">Version 1.0 · NDIAYE DIGITAL. Application de gestion simple, sans compte ni paiement intégré. Les paiements clients se font séparément (par exemple Wave ou Orange Money).</p>
+</section>
+</main>
+<nav class="nav">
+<button class="active" data-section="dashboard" onclick="showSection('dashboard',this)"><span>⌂</span>Accueil</button>
+<button data-section="sales" onclick="showSection('sales',this)"><span>＋</span>Ventes</button>
+<button data-section="products" onclick="showSection('products',this)"><span>▦</span>Stock</button>
+<button data-section="settings" onclick="showSection('settings',this)"><span>⚙</span>Réglages</button>
+</nav>
+<div class="toast" id="toast"></div>
+<script>
+const KEY='ndiayeDigitalBusinessStarter_v1';
+let data={sales:[],expenses:[],products:[]};
+const $=id=>document.getElementById(id);
+const today=new Date().toISOString().slice(0,10);
+$('saleDate').value=today;$('expenseDate').value=today;
+function load(){try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved)data={sales:saved.sales||[],expenses:saved.expenses||[],products:saved.products||[]}}catch(e){}render()}
+function save(){localStorage.setItem(KEY,JSON.stringify(data));render()}
+function money(n){return new Intl.NumberFormat('fr-FR',{maximumFractionDigits:0}).format(Number(n)||0)+' FCFA'}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function toast(s){$('toast').textContent=s;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2400)}
+function showSection(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.section===id));if(btn&&btn.dataset)section=id;render()}
+function operationItem(item,type){const amount=type==='sale'?item.qty*item.price:item.amount;return `<div class="item"><div><strong>${esc(item.name)}</strong><small>${esc(item.date)} · ${type==='sale'?'Vente':'Dépense'}${type==='sale'?' · Qté '+item.qty:''}</small></div><div class="item-right"><b class="${type==='sale'?'green':'gold'}">${type==='sale'?'+':'−'} ${money(amount)}</b><button class="danger small-btn" onclick="deleteItem('${type}','${item.id}')">Supprimer</button></div></div>`}
+function render(){const revenue=data.sales.reduce((s,x)=>s+x.qty*x.price,0),expenses=data.expenses.reduce((s,x)=>s+x.amount,0);$('revenue').textContent=money(revenue);$('expenses').textContent=money(expenses);$('profit').textContent=money(revenue-expenses);$('stockCount').textContent=data.products.reduce((s,p)=>s+p.qty,0);$('productTotal').textContent=data.products.length+' produit(s)';
+const all=[...data.sales.map(x=>({...x,type:'sale',time:x.created||x.date})),...data.expenses.map(x=>({...x,type:'expense',time:x.created||x.date}))].sort((a,b)=>String(b.time).localeCompare(String(a.time)));
+$('recentList').innerHTML=all.slice(0,4).map(x=>operationItem(x,x.type)).join('')||'<div class="empty">Aucune opération pour le moment. Ajoutez votre première vente.</div>';
+$('salesList').innerHTML=data.sales.slice().reverse().map(x=>operationItem(x,'sale')).join('')||'<div class="empty">Aucune vente enregistrée.</div>';
+$('expensesList').innerHTML=data.expenses.slice().reverse().map(x=>operationItem(x,'expense')).join('')||'<div class="empty">Aucune dépense enregistrée.</div>';
+$('productsList').innerHTML=data.products.slice().reverse().map(p=>`<div class="item"><div><strong>${esc(p.name)}</strong><small>Prix : ${money(p.price)}</small><span class="pill ${p.qty<=2?'low':''}">${p.qty<=2?'Stock faible':'En stock'} · ${p.qty} unité(s)</span></div><div class="item-right"><button class="secondary small-btn" onclick="changeStock('${p.id}',-1)">− 1</button> <button class="secondary small-btn" onclick="changeStock('${p.id}',1)">＋ 1</button><button class="danger small-btn" style="margin-top:6px" onclick="deleteItem('product','${p.id}')">Supprimer</button></div></div>`).join('')||'<div class="empty">Aucun produit. Ajoutez vos articles pour suivre le stock.</div>';
+const type=$('filterType').value,month=$('filterMonth').value;const filtered=all.filter(x=>(type==='all'||x.type===type)&&(!month||x.date.startsWith(month)));$('historyList').innerHTML=filtered.map(x=>operationItem(x,x.type)).join('')||'<div class="empty">Aucune opération pour ces filtres.</div>'}
+$('saleForm').addEventListener('submit',e=>{e.preventDefault();data.sales.push({id:crypto.randomUUID(),name:$('saleName').value.trim(),qty:Number($('saleQty').value),price:Number($('salePrice').value),date:$('saleDate').value,created:new Date().toISOString()});e.target.reset();$('saleQty').value=1;$('saleDate').value=today;save();toast('Vente enregistrée !');showSection('sales')});
+$('expenseForm').addEventListener('submit',e=>{e.preventDefault();data.expenses.push({id:crypto.randomUUID(),name:$('expenseName').value.trim(),amount:Number($('expenseAmount').value),date:$('expenseDate').value,created:new Date().toISOString()});e.target.reset();$('expenseDate').value=today;save();toast('Dépense enregistrée !');showSection('expensesPage')});
+$('productForm').addEventListener('submit',e=>{e.preventDefault();data.products.push({id:crypto.randomUUID(),name:$('productName').value.trim(),qty:Number($('productQty').value),price:Number($('productPrice').value)});e.target.reset();save();toast('Produit ajouté !')});
+function deleteItem(type,id){if(!confirm('Supprimer cet élément ?'))return;const key=type==='sale'?'sales':type==='expense'?'expenses':'products';data[key]=data[key].filter(x=>x.id!==id);save();toast('Élément supprimé')}
+function changeStock(id,delta){const p=data.products.find(x=>x.id===id);if(p){p.qty=Math.max(0,p.qty+delta);save()}}
+$('filterType').addEventListener('change',render);$('filterMonth').addEventListener('change',render);
+function download(name,content,mime){const blob=new Blob([content],{type:mime});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function backupData(){download('ndiaye-digital-sauvegarde.json',JSON.stringify(data,null,2),'application/json');toast('Sauvegarde préparée')}
+$('restoreFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!Array.isArray(d.sales)||!Array.isArray(d.expenses)||!Array.isArray(d.products))throw Error();if(confirm('Remplacer les données actuelles par la sauvegarde ?')){data=d;save();toast('Sauvegarde restaurée')}}catch(err){alert('Fichier de sauvegarde invalide.')}e.target.value=''});
+function exportCSV(){const rows=[['Type','Nom','Date','Quantité','Prix unitaire','Montant']];data.sales.forEach(x=>rows.push(['Vente',x.name,x.date,x.qty,x.price,x.qty*x.price]));data.expenses.forEach(x=>rows.push(['Dépense',x.name,x.date,'','',x.amount]));const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');download('ndiaye-digital-historique.csv','\ufeff'+csv,'text/csv;charset=utf-8');toast('Export CSV préparé')}
+function resetData(){if(confirm('Effacer définitivement toutes les données de cette application sur cet appareil ?')){data={sales:[],expenses:[],products:[]};save();toast('Données effacées')}}
+if('serviceWorker'in navigator && location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+load();
+</script>
+</body></html>
